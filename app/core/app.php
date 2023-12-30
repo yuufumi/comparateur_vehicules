@@ -9,6 +9,7 @@ class App
         $url = $this->splitURL();
         if(file_exists("../app/controllers/".strtolower($url[0]).".php")){
             $this->controller = strtolower($url[0]);
+            //show($this->controller);
             unset($url[0]);
         }    
         require "../app/controllers/".$this->controller.".php";

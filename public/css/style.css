@@ -1,0 +1,37 @@
+body {
+    background-color: #EEEBDD;
+}
+.carousel-item {
+    -webkit-transition: transform 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out;
+}
+.nav-link {
+    color: #3B0000;
+    border-bottom: 2px solid #1B1717; 
+    font-size: 24px;
+    font-weight: bold;
+}
+.nav-item2{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cards-wrapper {
+    display: flex;
+    justify-content: center;
+}
+.card-img{
+    width: 150px;
+    height: 150px;
+}
+.forms{
+    display: flex;
+    margin-left:30px;
+    margin-right: 30px;
+}
+
