@@ -20,11 +20,18 @@
         <a class="navbar-brand " href="#">
           <img src="./img/logo.png" class="d-inline-block align-top" alt="compcar">
         </a>
+        <script>
+          function clearSession(){
+            
+          }
+        </script>
         <?php if (isset($_SESSION['id'])) : ?>
           <a class="mx-5" href="<?=ROOT?>profile" style="text-decoration:none; color: #3B0000;">
             <h3><?php echo $_SESSION['nom']." ".$_SESSION['prenom']?></h3>
           </a>
-          <button class="btn btn-danger" onclick="<?php unset($_SESSION['id'])?>">Se deconnecter</button>
+          <form action="<?=ROOT?>logout" method="post">
+            <input type="submit" class="btn btn-danger" value="Se deconnecter">
+          </form>
         <?php else : ?>
           <a class="mx-5" href="<?=ROOT?>login" style="text-decoration:none; color: #3B0000;">
             <h4>Se connecter</h4>

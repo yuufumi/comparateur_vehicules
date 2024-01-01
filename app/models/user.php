@@ -21,7 +21,6 @@ Class user extends Database
 				$_SESSION['nom'] = $data[0]->nom;
 				$_SESSION['prenom'] = $data[0]->prenom;
 				header("Location:". ROOT . "home");
-				die;
 			}else{
 				$_SESSION['error'] = "wrong username or password";
 			}
@@ -85,10 +84,11 @@ Class user extends Database
 	function logout(){
 		//logged in
 
-		unset($_SESSION['email']);
-		unset($_SESSION['password']);
+		unset($_SESSION['id']);
+		unset($_SESSION['nom']);
+		unset($_SESSION['prenom']);
 
-		header("Location:". ROOT . "login");
+		header("Location:". ROOT . "home");
 		die;
 	}
 
