@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -19,9 +20,16 @@
         <a class="navbar-brand " href="#">
           <img src="./img/logo.png" class="d-inline-block align-top" alt="compcar">
         </a>
-        <a class="mx-5" href="../app/views/login.php" style="text-decoration:none; color: #3B0000;">
-          <h4>Se connecter</h4>
-        </a>
+        <?php if (isset($_SESSION['id'])) : ?>
+          <a class="mx-5" href="<?=ROOT?>profile" style="text-decoration:none; color: #3B0000;">
+            <h3><?php echo $_SESSION['nom']." ".$_SESSION['prenom']?></h3>
+          </a>
+          <button class="btn btn-danger" onclick="<?php unset($_SESSION['id'])?>">Se deconnecter</button>
+        <?php else : ?>
+          <a class="mx-5" href="<?=ROOT?>login" style="text-decoration:none; color: #3B0000;">
+            <h4>Se connecter</h4>
+          </a>
+        <?php endif; ?>
       </div>    
           <ul class="nav ms-auto justify-content-end "> 
               <li class="nav-item mx-2">
@@ -51,13 +59,13 @@
         <div class="swiper newsswiper">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <a href=""><img src="./img/vw_news.png" class="d-block w-100" alt="..."></a>
+              <a href=""><img src="<?=ROOT?>/img/vw_news.png" class="d-block w-100" alt="..."></a>
             </div>
             <div class="swiper-slide">
-              <a href=""><img src="./img/renault.jpg" class="d-block w-100" alt="..."></a>
+              <a href=""><img src="<?=ROOT?>/img/renault.jpg" class="d-block w-100" alt="..."></a>
             </div>
             <div class="swiper-slide">
-              <a href=""><img src="./img/vw_news.png" class="d-block w-100" alt="..."></a>
+              <a href=""><img src="<?=ROOT?>/img/vw_news.png" class="d-block w-100" alt="..."></a>
             </div>
           </div>
           
@@ -96,14 +104,14 @@
         </li>
 
         <li class="nav-item2">
-          <a class="nav-link" href="../app/views/avis.php">Avis</a>
+          <a class="nav-link" href="<?=ROOT?>avis">Avis</a>
         </li>
         
         <li class="nav-item2">
           <a class="nav-link" href="#guide">Guide </a>
         </li>
         <li class="nav-item2">
-          <a class="nav-link" href="../app/views/contact.php">Contact</a>
+          <a class="nav-link" href="<?=ROOT?>contact">Contact</a>
         </li>
       </ul>
       </nav>
@@ -117,7 +125,7 @@
               echo 
               "<div class='swiper-slide'>
                 <div class='card mx-5 px-2' style='border-radius:25px; background-color:#3B0000; color:#F5F5F5'>
-                  <img src='./img/Vw1.png' class='card-img mt-5' style='margin: auto;' alt='...'>
+                  <img src='".ROOT."/img/marque/hyundai.png' class='card-img mt-5' style='margin: auto;' alt='...'>
                   <div class='card-body justify-content-end'>
                     <h4 class='card-title' style='text-align:center;'>Marque ".$i." </h4>
                     <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -135,6 +143,7 @@
       const swiper = new Swiper('.myswiper', {
         slidesPerView: 3,
         spaceBetween: 30,
+        loop: true,
         navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",

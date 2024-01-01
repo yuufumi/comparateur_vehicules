@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-        background: #1B1717;
+        background: #1b1717;
         font-family: 'Oswald';
         display: flex;
         justify-content: center;
@@ -19,22 +19,30 @@
         box-sizing: border-box;
     }
 
-    .login {
+    form {
+        position:absolute;
         width: 500px;
+        top:5%;
         border: 2px solid #ccc;
         text-align: start;
-        padding: 30px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         background: #fcfaef;
         border-radius: 20px;
     }
 
-input {
+input, select {
     display: block;
     font-family: 'Oswald',sans-serif;
-    font-size:20px;
+    font-size:16px;
     border: 2px solid #ccc;
+    border-radius: 10px;
     width: 95%;
-    padding: 10px;
+    padding: 5px;
     margin: 10px auto;
 }
 
@@ -45,7 +53,7 @@ label {
     padding: 10px;
 }
 h1{
-    color: #3B0000;
+    color: #3b0000;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -58,66 +66,41 @@ h1{
     border: 2px solid #ccc;
     width: 95%;
     padding: 10px;
-    margin-top: 70px;
     margin-left: 10px;
-    margin-left: 10px;    
+    margin-right: 10px;    
+    margin-top: 40px;
+    margin-bottom: 40px;
     background: #f5f5f5;
     border-radius: 10px;
     z-index: 100px;
     transition: background-color 0.1s ease-in-out;
 }
 #login:hover{
-    color: #f5f5f5;
+    color: #3b0000;
     cursor: pointer;
-    background-color: #3B0000;
+    background-color: #fcfaef;
 }
-
-#signup {
-    display: block;
-    font-family: 'Oswald',sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-    border: 2px solid #ccc;
-    width: 95%;
-    padding: 10px;
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-left: 10px;    
-    color: #f5f5f5;
-    background-color: #3B0000;
-    border-radius: 10px;
-    z-index: 100px;
-    transition: background-color 0.1s ease-in-out;
-}
-#signup:hover{
-    background-color: #f5f5f5;
-    cursor: pointer;
-    color: #3B0000;
-}
-
-.error{
-    padding: 20px;
-    background: #f2dede;
-    color: #A94442;
-    border-radius: 5px;
-}
-    </style>
+</style>
 </head>
-<body >
-    <div class="login">
-    <form method="post">
-            <h1 >Se Connecter</h1>
-            <?php if (isset($error)) {
-                echo "<p class='error'>".$error."</p>";
-            }
-            ?>
+<body>
+    <form action="" method="post">
+        <h1 >Créer un compte</h1>
+        <label for="nom" style>Nom</label>
+        <input type="text" name="nom" placeholder="Nom">
+        <label for="prenom" >Prenom</label>
+        <input type="text" name="prenom" placeholder="Prénom">
         <label for="email" style>Email</label>
-        <input type="text" name="email" placeholder="Email address">
+        <input type="text" name="email" placeholder="Adresse email">
         <label for="password">Mot de passe</label>
-        <input type="password" name="password" placeholder="Password">
-        <button id="login" type="submit">Se connecter</button>
+        <input type="password" name="password" placeholder="Mot de passe">
+        <label for="birthdate">Date de naissance</label>
+        <input type="text" name="password" placeholder="Date de naissance">
+        <label for="sexe">Mot de passe</label>
+        <select name="sexe">
+            <option value="masculin">masculin</option>
+            <option value="feminin">feminin</option>
+        </select>
+        <button id="login" type="submit">Enregistrer</button>
     </form>
-    <a href="<?=ROOT?>signup" style="text-decoration:none"><button id="signup">Créer un compte</button> </a>
-    </div>
     </body>
 </html>

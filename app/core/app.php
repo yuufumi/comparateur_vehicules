@@ -9,15 +9,16 @@ class App
         $url = $this->splitURL();
         if(file_exists("../app/controllers/".strtolower($url[0]).".php")){
             $this->controller = strtolower($url[0]);
-            //show($this->controller);
             unset($url[0]);
         }    
+
         require "../app/controllers/".$this->controller.".php";
         $this->controller = new $this->controller;
         if(isset($url[1])){
             if(method_exists($this->controller,$url[1]))
             {
                 $this->method = $url[1];
+                show($this->method);
                 unset($url[1]);
             }
         }

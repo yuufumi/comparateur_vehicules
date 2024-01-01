@@ -1,6 +1,6 @@
 body {
     background: #1B1717;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Oswald';
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,6 @@ body {
 }
 
 * {
-    font-family: sans-serif;
     box-sizing: border-box;
 }
 

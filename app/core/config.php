@@ -10,7 +10,7 @@ define('DB_TYPE','mysql');
 define('DB_NAME','tdw');
 define('DB_USER','root');
 define('DB_PASS','');
-define('DB_HOST','localhost');
+define('DB_HOST','localhost:3307');
 
 /*protocal type http or https*/
 define('PROTOCOL','http');
