@@ -15,52 +15,8 @@
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     </head>
     <body style="font-family: 'Oswald', sans-serif;">
-      <nav class="navbar navbar-expand-lg navbar-light px-5">
-      <div class="d-flex align-items-center">  
-        <a class="navbar-brand " href="#">
-          <img src="./img/logo.png" class="d-inline-block align-top" alt="compcar">
-        </a>
-        <script>
-          function clearSession(){
-            
-          }
-        </script>
-        <?php if (isset($_SESSION['id'])) : ?>
-          <a class="mx-5" href="<?=ROOT?>profile" style="text-decoration:none; color: #3B0000;">
-            <h3><?php echo $_SESSION['nom']." ".$_SESSION['prenom']?></h3>
-          </a>
-          <form action="<?=ROOT?>logout" method="post">
-            <input type="submit" class="btn btn-danger" value="Se deconnecter">
-          </form>
-        <?php else : ?>
-          <a class="mx-5" href="<?=ROOT?>login" style="text-decoration:none; color: #3B0000;">
-            <h4>Se connecter</h4>
-          </a>
-        <?php endif; ?>
-      </div>    
-          <ul class="nav ms-auto justify-content-end "> 
-              <li class="nav-item mx-2">
-                  <a href="https://www.instagram.com/youcefbenali82/">
-                      <img src="./img/insta.png" alt="instagram">
-                  </a>
-              </li>
-              <li class="nav-item mx-2">
-                      <a href="https://www.tiktok.com/@youcefbenali467">
-                          <img src="./img/tiktok.png" alt="tiktok">
-                      </a>
-                  </li>
-                  <li class="nav-item mx-2">
-                      <a href="https://twitter.com/home">
-                      <img src="./img/twitter.png" alt="twitter">
-                  </a>
-                  </li>
-                  <li class="nav-item mx-2">
-                      <a href="https://www.facebook.com/profile.php?id=61552324022503">
-                      <img src="./img/facebook.png" alt="facebook">
-                  </a>
-                  </li>
-          </ul>
-      </nav>
+      <?php include_once 'navbar.php' ?>
+    
       <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
       <div id="news">
         <div class="swiper newsswiper">
@@ -101,13 +57,13 @@
           <a class="nav-link" href="#">Accueil</a>
         </li>
         <li class="nav-item2">
-          <a class="nav-link" href="#news">News</a>
+          <a class="nav-link" href="<?=ROOT?>news">News</a>
         </li>
         <li class="nav-item2">
-          <a class="nav-link" href="#comparateur">Comparateur</a>
+          <a class="nav-link" href="<?=ROOT?>comparateur">Comparateur</a>
         </li>
         <li class="nav-item2">
-          <a class="nav-link" href="#marques">Marques</a>
+          <a class="nav-link" href="<?=ROOT?>marques">Marques</a>
         </li>
 
         <li class="nav-item2">
@@ -115,7 +71,7 @@
         </li>
         
         <li class="nav-item2">
-          <a class="nav-link" href="#guide">Guide </a>
+          <a class="nav-link" href="<?=ROOT?>guide">Guide </a>
         </li>
         <li class="nav-item2">
           <a class="nav-link" href="<?=ROOT?>contact">Contact</a>
@@ -131,12 +87,11 @@
             for($i=1;$i<=6;$i++) {
               echo 
               "<div class='swiper-slide'>
-                <div class='card mx-5 px-2' style='border-radius:25px; background-color:#3B0000; color:#F5F5F5'>
-                  <img src='".ROOT."/img/marque/hyundai.png' class='card-img mt-5' style='margin: auto;' alt='...'>
-                  <div class='card-body justify-content-end'>
+                <div class='card mx-5 px-2' style='border-radius:25px; /*background-color:#3B0000;*/ color:#3B0000'>
+                  <img src='".ROOT."/img/marque/volkswagen.png' class='card-img mt-5' style='margin: auto;' alt='...'>
+                  <div class='card-body' style='text-align:center'>
                     <h4 class='card-title' style='text-align:center;'>Marque ".$i." </h4>
-                    <p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href='#' class='btn btn-danger mt-2 float-end' style='border-radius:20px; width:100px;'>Détails</a>
+                    <a href='#' class='btn btn-danger mt-2' style='border-radius:20px; width:100px;'>Détails</a>
                   </div>
                 </div>
               </div>";
@@ -250,28 +205,6 @@
     </tbody>
 </table>
 </section>
-<nav class="navbar navbar-expand-lg justify-content-start" style="background-color:#1B1717;margin-top:50px">
-      <ul class="navbar-nav mx-auto" >
-        <li class="nav-item2">
-          <a class="nav-link" href="#section1" style="color:#F5F5F5;">Accueil</a>
-        </li>
-        <li class="nav-item2">
-          <a class="nav-link" href="#section2" style="color:#F5F5F5;">News</a>
-        </li>
-        <li class="nav-item2">
-          <a class="nav-link" href="#section3" style="color:#F5F5F5;">Comparateur</a>
-        </li>
-        <li class="nav-item2">
-          <a class="nav-link" href="#section1" style="color:#F5F5F5;">Marques</a>
-        </li>
-        <li class="nav-item2">
-          <a class="nav-link" href="#section2" style="color:#F5F5F5;">Avis</a>
-        </li>
-        <li class="nav-item2">
-          <a class="nav-link" href="#section3" style="color:#F5F5F5;">Contact</a>
-        </li>
-      </ul>
-      </nav>
-
-    </body>
+<?php include 'footer.php'; ?>
+  </body>
 </html>
