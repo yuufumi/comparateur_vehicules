@@ -2,11 +2,17 @@
 
 class marques extends Controller {
     function index() {
-            $this->view('marques');
+        $marques = $this->loadModel('marque');
+        $data['marques'] = $marques->getAll();
+        
+        $this->view('marques',$data);
     }
     function details($id){
-    $data['id'] = $id;
-    $this->view('marque');
+    $marques = $this->loadModel('marque');
+    $vehicules = $this->loadModel('vehicule');
+    $data['marque'] = $marques->getById($id);
+    $data['vehicule'] = $vehicules->getByMarque($id);
+    $this->view('marque',$data);
     }
 }
 

@@ -21,15 +21,13 @@
       <div id="news">
         <div class="swiper newsswiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <a href=""><img src="<?=ROOT?>/img/vw_news.png" class="d-block w-100" alt="..."></a>
-            </div>
-            <div class="swiper-slide">
-              <a href=""><img src="<?=ROOT?>/img/renault.jpg" class="d-block w-100" alt="..."></a>
-            </div>
-            <div class="swiper-slide">
-              <a href=""><img src="<?=ROOT?>/img/vw_news.png" class="d-block w-100" alt="..."></a>
-            </div>
+              <?php 
+              foreach ($data['news'] as $row) {
+                echo '<div class="swiper-slide">
+                <a href="'.ROOT.'news/'.$row->news_id.'"><img src="'.ROOT.'/img/'.$row->lien.'" class="d-block w-100" alt="..."></a>
+                      </div>';
+              }
+              ?>
           </div>
           
       <div class="swiper-button-prev"></div>
@@ -47,7 +45,6 @@
       },
       });
       </script>
-
 
       </div>
       </div>
@@ -84,14 +81,14 @@
     <div class="swiper myswiper">
       <div class="swiper-wrapper">
             <?php
-            for($i=1;$i<=6;$i++) {
+            foreach($data['marque'] as $row) {
               echo 
               "<div class='swiper-slide'>
                 <div class='card mx-5 px-2' style='border-radius:25px; /*background-color:#3B0000;*/ color:#3B0000'>
-                  <img src='".ROOT."/img/marque/volkswagen.png' class='card-img mt-5' style='margin: auto;' alt='...'>
+                  <img src='".ROOT."/img/".$row->lien.".png' class='card-img mt-5' style='margin: auto;' alt='...'>
                   <div class='card-body' style='text-align:center'>
-                    <h4 class='card-title' style='text-align:center;'>Marque ".$i." </h4>
-                    <a href='#' class='btn btn-danger mt-2' style='border-radius:20px; width:100px;'>Détails</a>
+                    <h4 class='card-title' style='text-align:center;'>".$row->nom."</h4>
+                    <a href='".ROOT."marques/details/".$row->marque_id."' class='btn btn-danger mt-2' style='border-radius:20px; width:100px;'>Détails</a>
                   </div>
                 </div>
               </div>";
@@ -121,7 +118,7 @@
   <section id="comparateur" class="container-fluid pt-5">
     <div class="d-flex align-items-center" style="justify-content:space-between">
       <h1 class="mx-5 my-5 justify-content-start" style="color: #3B0000; font-weight: bold">Comparateur:</h1>
-      <button class="btn btn-danger " style="width:200px; height:66px; margin-right:96px; border-radius:25px;background-color:#CE1212; font-size: 32px;font-weight:bold;">Comparer</button>
+      <button id="comparer" class="btn btn-danger " style="width:200px; height:66px; margin-right:96px; border-radius:25px;background-color:#CE1212; font-size: 32px;font-weight:bold;">Comparer</button>
     </div>
     <div class="container">
       <div class="row g-4">
@@ -129,40 +126,47 @@
           for ($i=1;$i<=4;$i++){
             echo '
               <div class="card col-md mx-3 px-3 py-3" style="border-radius:25px; background-color: transparent; border: 3px solid #3B0000;">
-                <form>
+                <form id="vehicule'.$i.'" class="myform">
                   <img src="./img/pngwing.png" class="img-fluid mb-3 mt-3">
                   <h4 style="text-align:center; font-weight:bold;color: #3B0000">Véhicule '.$i.'</h4>
                   <div class="mb-3">
                     <label for="field1" style="font-weight:bold;">Marque</label>
-                    <select class="form-select" id="choiceInput">
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
+                    <select class="form-select" id="Marque">
+                    <option value="">Select an option</option>
+                    ';
+                    foreach($data['marque'] as $row){
+                      echo "<option value='".$row->id."'>".$row->nom."</option>";
+                    }
+                    echo '
                     </select>
                   </div>
                   <div class="mb-3">
+                    
                     <label for="field2" style="font-weight:bold;">Modèle</label>
-                    <select class="form-select" id="choiceInput">
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
-                    </select>
+                    <select class="form-select" id="modele">
+                    <option value="">Select an option</option>';
+                    foreach($data['modeles'] as $row){
+                      echo "<option value='".$row->modele."'>".$row->modele."</option>";
+                    }
+                    echo '</select>
                   </div>
                   <div class="mb-3">
                     <label for="field3" style="font-weight:bold;">Version</label>
                     <select class="form-select" id="choiceInput">
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
-                    </select>
+                    <option value="">Select an option</option>';
+                    foreach($data['versions'] as $row){
+                      echo "<option value='".$row->version."'>".$row->version."</option>";
+                    }
+                    echo '</select>
                   </div>
                   <div class="mb-3">
                     <label for="field4" style="font-weight:bold;">Année</label>
-                    <select class="form-select" id="choiceInput">
-                      <option value="option1">Option 1</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
-                    </select>
+                    <select class="form-select" id="choiceInput" >
+                    <option value="">Select an option</option>';
+                    foreach($data['annee'] as $row){
+                      echo "<option value='".$row->annee."'>".$row->annee."</option>";
+                    }
+                    echo '</select>
                   </div>
                 </form>
               </div>';

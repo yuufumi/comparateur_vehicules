@@ -18,26 +18,26 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <section class="d-flex justify-content-center my-3">
         <div class="mx-5" style="text-align:center">
-            <img src="<?=ROOT?>/img/marque/fiat.png" style="width: 250px;height:250px;" alt="">
-            <h1 style="color:#3b0000">Fiat</h1>
+            <img src="<?php echo ROOT.'/img/'.$data['marque'][0]->lien.'.png'?>" style="width: 250px;height:250px;" alt="">
+            <h1 style="color:#3b0000"><?php echo $data['marque'][0]->nom;?></h1>
         </div>    
         <table class="table table-striped table-bordered table-center mx-5" style="background-color: #F5F5F5;color:#3B0000;font-size:24px;">
     <tbody>
       <tr>
         <td>Nom: </td>
-        <td>Fiat</td>
+        <td><?php echo $data['marque'][0]->nom;?></td>
       </tr>
       <tr>
         <td>Pays</td>
-        <td>Italie</td>
+        <td><?php echo $data['marque'][0]->pays;?></td>
       </tr>
       <tr>
         <td>Siège social</td>
-        <td>Turin, Italie</td>
+        <td><?php echo $data['marque'][0]->siege_social;?></td>
       </tr>
       <tr>
         <td>Année de création</td>
-        <td>1937</td>
+        <td><?php echo $data['marque'][0]->annee_creation;?></td>
       </tr>
         
     </tbody>
@@ -47,14 +47,15 @@
         <h1 style="color:#3b0000; margin-top:100px;">Véhicule qui ont cette marque:</h1>
         <div class="swiper myswiper">
       <div class="swiper-wrapper">
+
             <?php
-            for($i=1;$i<=6;$i++) {
+            foreach($data['vehicule'] as $row) {
               echo 
               "<div class='swiper-slide'>
                 <div class='card mx-5 px-2' style='border-radius:25px; /*background-color:#3B0000;*/ color:#3B0000'>
-                  <img src='".ROOT."/img/pngwing.png' class='card-img mt-5' style='margin: auto;' alt='...'>
+                  <img src='".ROOT."/img/".$row->lien.".png' class='card-img mt-5' style='margin: auto;' alt='...'>
                   <div class='card-body' style='text-align:center'>
-                    <h4 class='card-title' style='text-align:center;'>Vehicule".$i." </h4>
+                    <h4 class='card-title' style='text-align:center;'>".$row->nom."</h4>
                     <a href='".ROOT."vehicule' class='btn btn-danger mt-2' style='border-radius:20px; width:100px;'>Détails vehicule</a>
                   </div>
                 </div>
