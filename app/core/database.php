@@ -1,6 +1,5 @@
 <?php 
-
-abstract Class Database
+class Database
 {	
 	public $db;
 	public function db_connect()
@@ -76,11 +75,11 @@ abstract Class Database
 			return false;
 		}
 	}
-
+/*
 	public abstract function insert($data); //inserts a row
     public abstract function delete($id); // deletes a row with a specific id
     public abstract function update($data); //updates a row
     public abstract function getById($id); //returns a row that has a specific id
     public abstract function getAll(); //returns all the rows
-
+*/
 }

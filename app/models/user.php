@@ -31,12 +31,12 @@ Class user extends Database
 		$this->db_disconnect();
 	}
 
-	function insert($POST){
+	function signup($POST){
 		$this->db_connect();
 		$_SESSION['error'] = "";
 		if(isset($POST['email']) && isset($POST['password']) && isset($POST['nom']) && isset($POST['prenom']) && isset($POST['sexe']) && isset($POST['date_de_naissance']))
-		{
-
+		{	
+			print_r($_POST);
 			$arr['email'] = $POST['email'];
 			$arr['password'] = $POST['password'];
 			$arr['nom'] = $POST['nom'];
@@ -48,8 +48,7 @@ Class user extends Database
 			$data = $this->write($query,$arr);
 			if($data)
 			{
-				
-				header("Location:". ROOT . "login");
+				$this->login($arr);
 				die;
 			}
 

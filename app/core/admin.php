@@ -1,12 +1,18 @@
-<?php 
-class App
+<?php
+class AdminApp
 {
-    //default value in case non existing class or method in the url
-    private $controller = "home";
-    private $method = 'index';
-    private $params = [];
-    public function __construct(){
 
+    private $controller = 'admin';
+    private $method = 'index';
+
+    private $params = [];
+    private function splitURL(){
+        $url = isset($_GET['url']) ? $_GET['url'] : "admin";
+        return explode("/", filter_var(trim($url,"/"),FILTER_SANITIZE_URL));
+    } 
+
+
+    public function __construct(){
         $url = $this->splitURL();
         if(file_exists("../app/controllers/".strtolower($url[0]).".php")){
             $this->controller = strtolower($url[0]);
@@ -26,9 +32,4 @@ class App
         $this->params = array_values($url);
         call_user_func_array([$this->controller,$this->method], $this->params);
     }
- private function splitURL(){
-    $url = isset($_GET['url']) ? $_GET['url'] : "home";
-    return explode("/", filter_var(trim($url,"/"),FILTER_SANITIZE_URL));
- } 
 }
-?>

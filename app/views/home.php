@@ -16,7 +16,7 @@
     </head>
     <body style="font-family: 'Oswald', sans-serif;">
       <?php include_once 'navbar.php' ?>
-    
+      
       <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
       <div id="news">
         <div class="swiper newsswiper">
@@ -81,7 +81,7 @@
     <div class="swiper myswiper">
       <div class="swiper-wrapper">
             <?php
-            foreach($data['marque'] as $row) {
+            foreach($data['marques'] as $row) {
               echo 
               "<div class='swiper-slide'>
                 <div class='card mx-5 px-2' style='border-radius:25px; /*background-color:#3B0000;*/ color:#3B0000'>
@@ -118,62 +118,146 @@
   <section id="comparateur" class="container-fluid pt-5">
     <div class="d-flex align-items-center" style="justify-content:space-between">
       <h1 class="mx-5 my-5 justify-content-start" style="color: #3B0000; font-weight: bold">Comparateur:</h1>
-      <button id="comparer" class="btn btn-danger " style="width:200px; height:66px; margin-right:96px; border-radius:25px;background-color:#CE1212; font-size: 32px;font-weight:bold;">Comparer</button>
+      <?php if (!empty($_SESSION['id'])): ?>
+        <button id="comparer" onclick="SUBMIT()" class="btn btn-danger " style="width:200px; height:66px; margin-right:96px; border-radius:25px;background-color:#CE1212; font-size: 32px;font-weight:bold;" disabled>Comparer</button>
+      <?php endif; ?>
     </div>
     <div class="container">
+      <form id="vehicules" method="post" action="<?=ROOT?>comparateur">
       <div class="row g-4">
         <?php
           for ($i=1;$i<=4;$i++){
             echo '
               <div class="card col-md mx-3 px-3 py-3" style="border-radius:25px; background-color: transparent; border: 3px solid #3B0000;">
-                <form id="vehicule'.$i.'" class="myform">
+
                   <img src="./img/pngwing.png" class="img-fluid mb-3 mt-3">
                   <h4 style="text-align:center; font-weight:bold;color: #3B0000">Véhicule '.$i.'</h4>
                   <div class="mb-3">
                     <label for="field1" style="font-weight:bold;">Marque</label>
-                    <select class="form-select" id="Marque">
+                    <select name="marque_'.$i.'" class="form-select" id="Marque_'.$i.'">
                     <option value="">Select an option</option>
                     ';
-                    foreach($data['marque'] as $row){
-                      echo "<option value='".$row->id."'>".$row->nom."</option>";
+                    $marques = $data['marques'];
+                    foreach($marques as $row){
+                      echo "<option value='".$row->marque_id."'>".$row->nom."</option>";
                     }
                     echo '
                     </select>
-                  </div>
-                  <div class="mb-3">
-                    
+                    </div>
+                    <div class="mb-3">
                     <label for="field2" style="font-weight:bold;">Modèle</label>
-                    <select class="form-select" id="modele">
-                    <option value="">Select an option</option>';
-                    foreach($data['modeles'] as $row){
-                      echo "<option value='".$row->modele."'>".$row->modele."</option>";
-                    }
-                    echo '</select>
-                  </div>
-                  <div class="mb-3">
+                    <select name="modele_'.$i.'" class="form-select" id="modele_'.$i.'">
+                      <option value="">Select Modele</option>
+                    </select>
+                    </div>
+                    <div class="mb-3">
                     <label for="field3" style="font-weight:bold;">Version</label>
-                    <select class="form-select" id="choiceInput">
-                    <option value="">Select an option</option>';
-                    foreach($data['versions'] as $row){
-                      echo "<option value='".$row->version."'>".$row->version."</option>";
-                    }
-                    echo '</select>
-                  </div>
-                  <div class="mb-3">
+                    <select name="version_'.$i.'" class="form-select" id="version_'.$i.'">
+                    <option value="">Select version</option>
+                    </select>
+                    </div>
+                    <div class="mb-3">
                     <label for="field4" style="font-weight:bold;">Année</label>
-                    <select class="form-select" id="choiceInput" >
-                    <option value="">Select an option</option>';
-                    foreach($data['annee'] as $row){
-                      echo "<option value='".$row->annee."'>".$row->annee."</option>";
-                    }
-                    echo '</select>
-                  </div>
-                </form>
-              </div>';
-      }
-      ?>
+                    <select name="annee_'.$i.'" class="form-select" id="annee_'.$i.'">
+                    <option value="">Select annee</option>
+                    </select>
+                    </div>
+                  </div>';
+                }
+                ?>
       </div>
+    </form>
     </div>
+    <script>
+        let check_all = 0
+        $(document).ready(function(){
+          let button = document.getElementById('comparer');
+          for(let i = 1; i < 5;i++){
+          let check_form = 0;
+        $(`#Marque_${i}`).on('change', function(){
+          let marque = $(this).val();
+          console.log(marque);
+          if(marque){
+          $.ajax({
+            type: 'POST',
+            url: './api.php',
+            data: 'marque='+marque, // Set the content type
+            success: function(html) {
+              $(`#modele_${i}`).html(html);
+            },
+            error: function(error) {
+              console.error('Error:', error);
+            }
+          })
+        }else{
+          $(`#modele_${i}`).html("<option value=''>Selectionner un modele</option>")
+        }
+        if($(`#Marque_${i}`).val()!==''){check_form++;}  
+        console.log(`check_form ${check_form}`)  
+      });
+        $(`#modele_${i}`).on('change', function(){
+          let modele = $(this).val();
+          console.log(modele);
+          if(modele){
+          $.ajax({
+            type: 'POST',
+            url: './api.php',
+            data: 'modele='+modele, // Set the content type
+            success: function(data) {
+              $(`#version_${i}`).html(data);
+            },
+            error: function(error) {
+              console.error('Error:', error);
+            }
+          })
+        }else{
+          $(`#version_${i}`).html("<option value=''>Selectionner une version</option>")
+        }
+        if($(this).val()!==''){check_form++;}
+        console.log(`check_form ${check_form}`)
+        });
+        $(`#version_${i}`).on('change', function(){
+          let version = $(this).val();
+          if(version){
+            $.ajax({
+              type: 'POST',
+              url: './api.php',
+              data: 'version='+version, // Set the content type
+              success: function(data) {
+                $(`#annee_${i}`).html(data);
+              },
+              error: function(error) {
+                console.error('Error:', error);
+              }
+            })
+          }else{
+            $(`#annee_${i}`).html("<option value=''>Selectionner une annee</option>")
+          }
+          if($(`#version_${i}`).val()!==''){check_form++;}
+          console.log(`check_form ${check_form}`)
+        });
+        $(`#annee_${i}`).on('change', function(){
+          if($(`#annee_${i}`).val()!==''){check_form++;}
+          console.log(`check_form ${check_form}`)
+          if(check_form>=4){
+            check_all++;
+            console.log(check_all)
+            if(check_all>=2){
+              console.log("check");
+              button.disabled = false;
+            }
+          }
+        })
+      }
+
+    });
+    </script>
+
+    <script>
+      function SUBMIT(){
+        $('#vehicules').submit()
+      };
+    </script>
   </section>
   <section id="guide" class="container-fluid pt-5" style="padding-top: 200px;">
     <p class="mx-5 pt-5" style="color:#3B0000;font-weight:bold; font-size:60px;">GUIDE D'ACHAT</p>
@@ -191,21 +275,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Data 1</td>
-      <td>Data 2</td>
-      <td>Data 3</td>
-    </tr>
-    <tr>
-      <td>Data 1</td>
-      <td>Data 2</td>
-      <td>Data 3</td>
-    </tr>
-    <tr>
-      <td>Data 1</td>
-      <td>Data 2</td>
-      <td>Data 3</td>
-    </tr>
+      <?php foreach($data['comps'] as $row){
+        echo '<tr><td>'.$row->first_car_name.'</td>';
+        echo '<td>'.$row->second_car_name.'</td>';
+        echo '<td>1</td></tr>';
+      }
+      ?>
     </tbody>
 </table>
 </section>

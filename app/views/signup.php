@@ -83,7 +83,7 @@ h1{
 </style>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="<?=ROOT?>signup" method="post">
         <h1 >Créer un compte</h1>
         <label for="nom" style>Nom</label>
         <input type="text" name="nom" placeholder="Nom">
@@ -94,8 +94,8 @@ h1{
         <label for="password">Mot de passe</label>
         <input type="password" name="password" placeholder="Mot de passe">
         <label for="birthdate">Date de naissance</label>
-        <input type="text" name="password" placeholder="Date de naissance">
-        <label for="sexe">Mot de passe</label>
+        <input type="date" name="date_de_naissance" placeholder="Date de naissance">
+        <label for="sexe">Sexe</label>
         <select name="sexe">
             <option value="masculin">masculin</option>
             <option value="feminin">feminin</option>
