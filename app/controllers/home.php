@@ -7,6 +7,8 @@ class Home extends Controller{
         $marques = $marque->getAll();
         $comparaisons = $this->loadModel('comparison');
         $data['comps'] = $comparaisons->getAll();
+
+        show($data['comps']);
         $data['marques'] = $marques;
         $this->view("home",$data);
         

@@ -55,8 +55,8 @@
                 <div class='card mx-5 px-2' style='border-radius:25px; /*background-color:#3B0000;*/ color:#3B0000'>
                   <img src='".ROOT."/img/".$row->lien.".png' class='card-img mt-5' style='margin: auto;' alt='...'>
                   <div class='card-body' style='text-align:center'>
-                    <h4 class='card-title' style='text-align:center;'>".$row->nom."</h4>
-                    <a href='".ROOT."vehicule' class='btn btn-danger mt-2' style='border-radius:20px; width:100px;'>Détails vehicule</a>
+                    <h4 class='card-title' style='text-align:center;'>".$row->vehicule_nom."</h4>
+                    <a href='".ROOT."vehicules/".$row->vehicule_id."' class='btn btn-danger mt-2' style='border-radius:20px; width:100px;'>Détails vehicule</a>
                   </div>
                 </div>
               </div>";

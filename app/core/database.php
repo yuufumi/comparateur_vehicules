@@ -52,9 +52,8 @@ class Database
 	public function write($query,$data = [])
 	{
 
-			$this->db_connect();
+		$this->db_connect();
 		$stm = $this->db->prepare($query);
-
 		if(count($data) == 0)
 		{
 			$stm = $this->db->query($query);
@@ -63,7 +62,7 @@ class Database
 				$check = 1;
 			}
 		}else{
-
+			show($data);
 			$check = $stm->execute($data);
 		}
 
@@ -75,11 +74,5 @@ class Database
 			return false;
 		}
 	}
-/*
-	public abstract function insert($data); //inserts a row
-    public abstract function delete($id); // deletes a row with a specific id
-    public abstract function update($data); //updates a row
-    public abstract function getById($id); //returns a row that has a specific id
-    public abstract function getAll(); //returns all the rows
-*/
+
 }

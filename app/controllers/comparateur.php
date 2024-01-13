@@ -2,9 +2,12 @@
 
 class comparateur extends Controller {
     function index(){
+        $marque = $this->loadModel('marque');
+        $data['marques'] = $marque->getAll();
+        $data['vehicules'] = [];
         $vehicules = $this->loadModel('vehicule');
         $comparaisons = $this->loadModel('comparison');
-        if(isset($_POST)){
+        if(!empty($_POST)){
             $arr = array_filter($_POST, function($value) {
                 return $value !== '';
             });
@@ -27,16 +30,18 @@ class comparateur extends Controller {
                     }
                 }
             }
+            show($newData); 
             for($i = 1; $i <= count($newData); $i++){
                 $data['vehicules'][$i] = $vehicules->getByInfo($newData[$i]);
             }
-            $marque = $this->loadModel('marque');
-            $data['marques'] = $marque->getAll();
+            show($data);
+            
             for ($i = 1; $i <= count($data['vehicules']); $i++) {
                 for ($j = $i + 1; $j <= count($data); $j++) {
                     $comparaisons->insert(array('id1'=>$data['vehicules'][$i][1]->vehicule_id,'id2'=>$data['vehicules'][$j][1]->vehicule_id));
                 }
             }
+        }else{
         }
         $this->view('comparateur',$data);
     }

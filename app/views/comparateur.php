@@ -123,6 +123,7 @@
               url: './api.php',
               data: 'version='+version, // Set the content type
               success: function(data) {
+                console.log(data);
                 $(`#annee_${i}`).html(data);
               },
               error: function(error) {
@@ -159,6 +160,7 @@
     </script>
   </section>  
   <section class="my-5 mx-5" style="color:#3b0000">
+    <?php if($data['vehicules']): ?>
     <h1>Résultat de Comparaisons</h1>
     <table class="table table-striped table-bordered table-center" style="margin-top:100px; background-color: #F5F5F5;color:#3B0000;font-size:24px;">
         <thead>
@@ -222,28 +224,7 @@
               echo '</tr>';
             }
             ?>
-            <!--<tr>
-                <td style="font-weight:500">car1</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-            </tr>
-            <tr>
-                <td style="font-weight:500">car2</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-            </tr>
-            <tr>
-                <td style="font-weight:500">car3</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-                <td>Data 2</td>
-                <td>Data 3</td>
-            </tr>
-              -->
+
             <tr>
                 <td style="font-weight:500">prix</td>
                 <?php for($i=1;$i<=count($data['vehicules']);$i++) {
@@ -253,6 +234,7 @@
             </tr>
 </tbody>
 </table>
+<?php endif; ?>
 </section>
 
 <?php include 'footer.php'; ?>

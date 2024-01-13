@@ -12,9 +12,9 @@ Class version extends Database{
         return $data;
     }
     public function getAnnees($version){
-        //$arr['version_name'] = $version;
-        $query = "SELECT * FROM `version` Where `version` LIKE '$version%'";
-        $data = $this->read($query);
+        $arr['version'] = $version;
+        $query = 'SELECT * FROM version Where version.id= :version;';
+        $data = $this->read($query,$arr);
         return $data;
     }
 

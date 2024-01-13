@@ -5,14 +5,15 @@ Class vehicule extends Database{
     public function update($data){}
     public function getById($id){
         $arr['id'] = $id;
-        $query = "SELECT * FROM vehicule JOIN image ON vehicule.id = image.vehicule_id JOIN marque ON marque.id= vehicule.marque_id JOIN modele ON vehicule.modele_id=modele.id JOIN version ON vehicule.version_id=version.id WHERE vehicule.id = :id";
+        $query = 'SELECT vehicule.id as vehicule_id, marque.id as marque_id,modele.id as modele_id, version.id as version_id, vehicule.nom as vehicule_nom, marque.nom as marque_nom, modele.modele_nom , version.version, version.annee, vehicule.prix, caracteristique.name as feature_name, vehicule_caracteristique.Value, image.lien FROM vehicule LEFT JOIN vehicule_caracteristique ON vehicule.id=vehicule_caracteristique.vehicule_id LEFT JOIN caracteristique ON caracteristique.id=vehicule_caracteristique.feature_id JOIN image ON vehicule.id = image.vehicule_id JOIN marque ON marque.id= vehicule.marque_id JOIN modele ON vehicule.modele_id=modele.id JOIN version ON vehicule.version_id=version.id WHERE vehicule.id = :id';
+        
         $data = $this->read($query,$arr);
         return $data;
     }
 
     public function getByMarque($marqueid){
         $arr['id'] = $marqueid;
-        $query = "SELECT * FROM vehicule JOIN image ON vehicule.id = image.vehicule_id WHERE vehicule.marque_id = :id";
+        $query = 'SELECT vehicule.id as vehicule_id, image.lien, marque.id as marque_id, vehicule.nom as vehicule_nom FROM vehicule JOIN image ON vehicule.id = image.vehicule_id JOIN marque ON marque.id= vehicule.marque_id WHERE vehicule.marque_id= :id ;';
         $data = $this->read($query,$arr);
         return $data;
 

@@ -1,21 +1,4 @@
-
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>CompCar</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    </head>
-    <body style="font-family: 'Oswald', sans-serif;">
-      <?php include_once 'navbar.php' ?>
+    <?php include_once 'navbar.php' ?>
       
       <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
       <div id="news">
@@ -118,9 +101,7 @@
   <section id="comparateur" class="container-fluid pt-5">
     <div class="d-flex align-items-center" style="justify-content:space-between">
       <h1 class="mx-5 my-5 justify-content-start" style="color: #3B0000; font-weight: bold">Comparateur:</h1>
-      <?php if (!empty($_SESSION['id'])): ?>
         <button id="comparer" onclick="SUBMIT()" class="btn btn-danger " style="width:200px; height:66px; margin-right:96px; border-radius:25px;background-color:#CE1212; font-size: 32px;font-weight:bold;" disabled>Comparer</button>
-      <?php endif; ?>
     </div>
     <div class="container">
       <form id="vehicules" method="post" action="<?=ROOT?>comparateur">
@@ -278,12 +259,10 @@
       <?php foreach($data['comps'] as $row){
         echo '<tr><td>'.$row->first_car_name.'</td>';
         echo '<td>'.$row->second_car_name.'</td>';
-        echo '<td>1</td></tr>';
+        echo '<td>'.$row->frequence.'</td></tr>';
       }
       ?>
     </tbody>
 </table>
 </section>
 <?php include 'footer.php'; ?>
-  </body>
-</html>
