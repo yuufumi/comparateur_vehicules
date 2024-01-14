@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>CompCar</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -105,10 +105,11 @@ h1{
 </head>
 <body >
     <div class="login">
-    <form action="<?=ROOT?>" method="post">
+    <form action="<?=ROOT?>login" method="post">
             <h1 >Se Connecter</h1>
-            <?php if (isset($error)) {
-                echo "<p class='error'>".$error."</p>";
+            <?php if (isset($_SESSION['error'])) {
+                echo "<p class='error'>".$_SESSION['error']."</p>";
+                unset($_SESSION['error']);
             }
             ?>
         <label for="email" style>Email</label>
@@ -118,6 +119,6 @@ h1{
         <button id="login" type="submit">Se connecter</button>
     </form>
     <a href="<?=ROOT?>signup" style="text-decoration:none"><button id="signup">Créer un compte</button> </a>
-    </div>
+</div>
     </body>
 </html>

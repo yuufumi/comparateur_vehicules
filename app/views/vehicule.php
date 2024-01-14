@@ -49,27 +49,13 @@
       </tr>
       <tr>
         <td>prix</td>
-        <td><?php echo $data['vehicule'][0]->prix ?></td>
+        <td><?php echo $data['vehicule'][0]->prix ?> DA</td>
       </tr>
         
     </tbody>
     </table>
   </section>
-  <?php
-    $postDataString = http_build_query($post);
-    $options = array(
-      'http' => array(
-          'method'  => 'POST',
-          'content' => $postDataString
-      )
-    );
-    // Create a stream context for the request
-    $context  = stream_context_create($options);
-
-    // Simulate a POST request and populate $_POST
-    file_get_contents('php://input', false, $context);
-  ?>
-<section class="justify-content-center mx-5 my-3" style="padding-top:70px;color:#3B0000">
+  <section class="justify-content-center mx-5 my-3" style="padding-top:70px;color:#3B0000">
     <h1 class="my-5">Caractéristiques de la voiture</h1>
     <table class="table table-striped table-bordered table-center mx-5" style="background-color: #F5F5F5;color:#3B0000;font-size:24px;">
     <tbody>

@@ -24,7 +24,6 @@ Class user extends Database
 			$data = $this->read($query,$arr);
 			if($data)
 			{	
-				echo "check";
 				//logged in
 				$_SESSION['id'] = $data[0]->id;
 				$_SESSION['nom'] = $data[0]->nom;
