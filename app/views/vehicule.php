@@ -14,12 +14,16 @@
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body style="font-family: 'Oswald';">
-<?php include 'navbar.php'; show($data['vehicule'])?>
+<?php include 'navbar.php'; /*show($data['vehicule'])*/?>
 <section class="d-flex justify-content-center my-3">
     <div class="ms-5" style="text-align:center">
       <img src="<?=ROOT?>/img/<?=$data['vehicule'][0]->lien?>.png" style="width: 250px;height:250px;" alt="">
       <h1 style="color:#3b0000"><?php echo $data['vehicule'][0]->vehicule_nom ?></h1>
-      <div class="btn btn-danger btn-block btn-lg">Ajouter au favoris</div>
+      <form action="<?=ROOT?>vehicules/details/<?=$data['vehicule'][0]->vehicule_id?>" method="POST">
+      <input type="text" name="user" value="<?=$_SESSION['id']?>" hidden>
+      <input type="text" name="car" value="<?=$data['vehicule'][0]->vehicule_id?>" hidden>
+      <button type="submit" class="btn btn-danger btn-block btn-lg">Ajouter au favoris</button>
+      </form>
     </div>    
     <table class="table table-striped table-bordered table-center mx-5" style="background-color: #F5F5F5;color:#3B0000;font-size:24px;">
     <tbody>

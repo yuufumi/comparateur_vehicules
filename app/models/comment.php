@@ -3,18 +3,23 @@ class comment extends Database{
 
     //public function getAll(){}
 
-    //public function getUserAvis($userId){}
+    public function getUserAvis($userId){
+        $arr['id'] = $userId; 
+        $query = "SELECT avis.id as avis_id, user.id as user_id, avis.commentaire, avis.note, avis.statut FROM avis JOIN user ON user.id = avis.utilisateur_id WHERE avis.utilisateur_id = :id ORDER BY avis.note DESC";
+        $data = $this->read($query,$arr);
+        return $data;
+    }
 
     public function getMarqueAvis($marqueId){
         $arr['id'] = $marqueId; 
-        $query = "SELECT avis.id as avis_id, user.id as user_id, avis.commentaire, avis.note, avis.statut,user.nom, user.prenom  FROM avis JOIN user ON user.id = avis.utilisateur_id WHERE avis.marque_id = :id ORDER BY avis.note DESC limit 3";
+        $query = "SELECT avis.id as avis_id, user.id as user_id, avis.commentaire, avis.note, avis.statut,user.nom, user.prenom  FROM avis JOIN user ON user.id = avis.utilisateur_id WHERE avis.marque_id = :id AND avis.statut = 'approved' ORDER BY avis.note DESC limit 3";
         $data = $this->read($query,$arr);
         return $data;
     }
 
     public function getVehiculeAvis($VehiculeId){
         $arr['id'] = $VehiculeId; 
-        $query = "SELECT avis.id as avis_id, user.id as user_id, avis.commentaire, avis.note, avis.statut,user.nom, user.prenom  FROM avis JOIN user ON user.id = avis.utilisateur_id WHERE avis.vehicule_id = :id ORDER BY avis.note DESC limit 3";
+        $query = "SELECT avis.id as avis_id, user.id as user_id, avis.commentaire, avis.note, avis.statut,user.nom, user.prenom  FROM avis JOIN user ON user.id = avis.utilisateur_id WHERE avis.vehicule_id = :id AND avis.statut = 'approved' ORDER BY avis.note DESC limit 3";
         $data = $this->read($query,$arr);
         return $data;
     }

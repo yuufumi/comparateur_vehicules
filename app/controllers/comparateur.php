@@ -30,11 +30,11 @@ class comparateur extends Controller {
                     }
                 }
             }
-            show($newData); 
+            //show($newData); 
             for($i = 1; $i <= count($newData); $i++){
                 $data['vehicules'][$i] = $vehicules->getByInfo($newData[$i]);
             }
-            show($data);
+            //show($data);
             
             for ($i = 1; $i <= count($data['vehicules']); $i++) {
                 for ($j = $i + 1; $j <= count($data); $j++) {

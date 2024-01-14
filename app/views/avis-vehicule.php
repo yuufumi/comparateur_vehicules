@@ -28,7 +28,7 @@
         <div class="swiper-wrapper"> 
     <?php 
     show(count($data['avis']));
-    count($data['avis'])< 5 ? $cpt = 1 : $cpt = count($data['avis'])%5;
+    count($data['avis'])< 5 ? $cpt = 1 : $cpt = count($data['avis'])/5 +1;
     
     $remaining = count($data['avis']);
     $ind = 0;

@@ -4,16 +4,16 @@ class avis extends Controller{
 function index(){
     $vehicules = $this->loadModel('vehicule');
     $data['vehicules'] = $vehicules->getAll(["vehicule.id","vehicule.nom","image.lien"]);
-    show($data['vehicules']);
+    //show($data['vehicules']);
     $this->view('avis',$data);
 }
 function details($a){
     $vehicules = $this->loadModel('vehicule');
     $avis = $this->loadModel('comment');
     $data['vehicule'] = $vehicules->getById($a)[0];
-    show($data['vehicule']);
+    //show($data['vehicule']);
     $data['avis'] = $avis->getVehiculeAvis($a);
-    show($data);
+    //show($data);
     $this->view('avis-vehicule',$data);
 }
 }

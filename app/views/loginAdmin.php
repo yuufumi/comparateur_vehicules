@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-        background: #1B1717;
         font-family: 'Oswald';
         display: flex;
         justify-content: center;
@@ -105,19 +104,18 @@ h1{
 </head>
 <body >
     <div class="login">
-    <form action="<?=ROOT?>" method="post">
+    <form action="<?=ADMIN?>" method="post">
             <h1 >Se Connecter</h1>
             <?php if (isset($error)) {
                 echo "<p class='error'>".$error."</p>";
             }
             ?>
-        <label for="email" style>Email</label>
-        <input type="text" name="email" placeholder="Email address">
+        <label for="username" style>Email</label>
+        <input type="text" name="username" placeholder="username">
         <label for="password">Mot de passe</label>
         <input type="password" name="password" placeholder="Password">
-        <button id="login" type="submit">Se connecter</button>
+        <button id="login" type="submit">Se connecter comme un admin</button>
     </form>
-    <a href="<?=ROOT?>signup" style="text-decoration:none"><button id="signup">Créer un compte</button> </a>
     </div>
     </body>
 </html>

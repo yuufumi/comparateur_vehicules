@@ -21,6 +21,7 @@ $path = str_replace("\\", "/",PROTOCOL ."://" . $_SERVER['SERVER_NAME'] . __DIR_
 $path = str_replace($_SERVER['DOCUMENT_ROOT'], "", $path);
 
 define('ROOT', str_replace("app/core", "public", $path));
+define('ADMIN', str_replace("app/core", "admin", $path));
 define('ASSETS', str_replace("app/core", "public/assets", $path));
 
 /*set to true to allow error reporting

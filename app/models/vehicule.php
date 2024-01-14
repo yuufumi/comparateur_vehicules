@@ -1,5 +1,19 @@
 <?php
 Class vehicule extends Database{
+
+    public function insertFavoris($data){
+        $arr['user'] = $data['user'];
+        $arr['car'] = $data['car'];
+        $query = 'SELECT * from favoris WHERE user_id= :user AND vehicule_id= :car;';
+        $data = $this->read($query,$arr);
+        if(!$data){
+            $query = 'INSERT IGNORE INTO favoris (user_id, vehicule_id) VALUES (:user, :car);';
+            $check = $this->write($query,$arr);
+            return $check;
+        }else{
+            return true;
+        }
+    }
     public function insert($data){}
     public function delete($id){}
     public function update($data){}

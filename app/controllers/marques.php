@@ -24,7 +24,7 @@ class marques extends Controller {
     $data['marque'] = $marques->getById($id);
     $data['vehicule'] = $vehicules->getByMarque($id);
     $data['avis'] = $avis->getMarqueAvis($id);
-    show($data['marque']);
+    //show($data['marque']);
     $this->view('marque',$data);
     }
 }

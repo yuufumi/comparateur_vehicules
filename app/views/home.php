@@ -1,6 +1,6 @@
-    <?php include_once 'navbar.php' ?>
+<?php include_once 'navbar.php' ?>
       
-      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
       <div id="news">
         <div class="swiper newsswiper">
           <div class="swiper-wrapper">
@@ -34,7 +34,7 @@
       <nav class="navbar navbar-expand-lg navbar-light justify-content-start" style="background-color: #FCFAEF">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item2">
-          <a class="nav-link" href="#">Accueil</a>
+          <a class="nav-link" href="<?=ROOT?>">Accueil</a>
         </li>
         <li class="nav-item2">
           <a class="nav-link" href="<?=ROOT?>news">News</a>
@@ -242,7 +242,7 @@
   </section>
   <section id="guide" class="container-fluid pt-5" style="padding-top: 200px;">
     <p class="mx-5 pt-5" style="color:#3B0000;font-weight:bold; font-size:60px;">GUIDE D'ACHAT</p>
-    <h3 class="mx-5 pt-5" style="color:#3B0000;font-weight:bold;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
+    <h4 class="mx-5 pt-5" style="color:#3B0000;font-weight:bold;">Le guide d'achat de voitures est un outil essentiel qui offre aux consommateurs une source fiable d'informations et de conseils lorsqu'ils envisagent l'acquisition d'un véhicule. Ce guide fournit une analyse détaillée des différentes marques, modèles et caractéristiques disponibles sur le marché automobile, permettant aux acheteurs de prendre des décisions éclairées en fonction de leurs besoins spécifiques. En explorant des critères tels que la consommation de carburant, la sécurité, les performances, le coût d'entretien, et d'autres facteurs cruciaux, les utilisateurs sont en mesure de comparer les options et de sélectionner le véhicule qui correspond le mieux à leurs préférences et à leur budget. De plus, le guide d'achat peut également fournir des informations sur les tendances du marché, les innovations technologiques, et les avis d'experts, offrant ainsi une perspective holistique pour guider les consommateurs tout au long du processus d'achat, de la recherche initiale jusqu'à la prise de décision finale. En résumé, le guide d'achat de voitures représente une ressource inestimable, simplifiant le processus d'achat et permettant aux consommateurs de choisir un véhicule qui répond à leurs besoins spécifiques et à leurs attentes.</h4>
     <button class="btn float-end mx-5 my-5" style="border-radius:20px; font-size:24px;font-weight:bold;color:#F5F5F5; background-color:#3B0000">En savoir plus >></button>
   </section>
   <section class="container-fluid px-4" style="padding-top: 200px;">

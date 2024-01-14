@@ -2,10 +2,19 @@
 
 Class user extends Database
 {
-
+	public function getFavoriteCars($id){
+		$arr['id'] = $id;
+		$query = "select * from favoris where user_id = :id ";
+		$data = $this->read($query,$arr);
+		return $data;
+	}
+	public function getById($id){
+		$arr['id'] = $id;
+		$query = "select * from user where id = :id limit 1";
+		$data = $this->read($query,$arr);
+		return $data;
+	}
 	function login($POST){	
-		$this->db_connect();
-		
 		if(isset($POST['email']) && isset($POST['password']))
 		{
 			$arr['email'] = $POST['email'];
@@ -20,7 +29,7 @@ Class user extends Database
 				$_SESSION['id'] = $data[0]->id;
 				$_SESSION['nom'] = $data[0]->nom;
 				$_SESSION['prenom'] = $data[0]->prenom;
-				header("Location:". ROOT . "home");
+				//header("Location:". ROOT . "home");
 			}else{
 				$_SESSION['error'] = "wrong username or password";
 			}
@@ -28,11 +37,9 @@ Class user extends Database
 
 			$_SESSION['error'] = "please enter a valid username and password";
 		}
-		$this->db_disconnect();
 	}
 
 	function signup($POST){
-		$this->db_connect();
 		$_SESSION['error'] = "";
 		if(isset($POST['email']) && isset($POST['password']) && isset($POST['nom']) && isset($POST['prenom']) && isset($POST['sexe']) && isset($POST['date_de_naissance']))
 		{	
@@ -56,11 +63,9 @@ Class user extends Database
 
 			$_SESSION['error'] = "please enter a valid username and password";
 		}
-		$this->db_disconnect();
 	}
 
 	function check_logged_in(){
-		$this->db_connect();
 		if(isset($_SESSION['email']))
 		{
 
@@ -75,7 +80,6 @@ Class user extends Database
 				return true;
 			}
 		}
-		$this->db_disconnect();
 		return false;
 
 	}
@@ -99,13 +103,7 @@ Class user extends Database
 		return $data;
 	}
 
-	function getById($id){
-		$this->db_connect();
-		$query = "select * from user where id =". $id . ";";
-		$user = $this->read($query);
-		$this->db_disconnect();
-		return $user;
-	}
+
 
 	function delete($id){
 		$this->db_connect();

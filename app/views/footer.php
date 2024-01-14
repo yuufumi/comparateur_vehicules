@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg justify-content-start" style="background-color:#1B1717;margin-top:50px">
       <ul class="navbar-nav mx-auto" >
         <li class="nav-item2">
-          <a class="nav-link" href="#" style="color:#F5F5F5;">Accueil</a>
+          <a class="nav-link" href="<?=ROOT?>" style="color:#F5F5F5;">Accueil</a>
         </li>
         <li class="nav-item2">
           <a class="nav-link" href="<?=ROOT?>news" style="color:#F5F5F5;">News</a>
