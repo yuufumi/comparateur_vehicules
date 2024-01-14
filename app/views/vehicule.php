@@ -233,16 +233,16 @@
     <section class="column my-5 mx-5">
       <h1 class="mb-5" style="font-weight:bold;color:#3b0000">Top avis appreciés</h1>
       <?php
-        for($i=1;$i<=3;$i++){
+        foreach($data['avis'] as $row){
           echo '<div class="col-lg mb-4">
           <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
               <h5 class="card-title">Avis</h5>
-              <span class="badge rounded-pill" style="background-color:#1b1717;">4.5</span>
+              <span class="badge rounded-pill" style="background-color:#1b1717;">'.$row->note.'</span>
             </div>
             <div class="card-body">
-              <p class="card-text">Comment from user Youcef Benali</p>
-              <p class="medium text-muted">Cette véhicule est Cette véhicule est Cette véhicule est Cette véhicule est Cette véhicule est Cette véhicule est Cette véhicule est Cette véhicule est Cette véhicule est Cette véhicule est Cette véhicule est Cette véhicule est Cette véhicule est </p>
+              <p class="card-text">Comment from user '.$row->nom.' '.$row->prenom.'</p>
+              <p class="medium text-muted">'.$row->commentaire.'</p>
             </div>
           </div>
         </div>';
@@ -260,16 +260,19 @@
           <h4 class="card-title">Partager votre avis</h4>
         </div>
         <div class="card-body">
-          <form>
+          <form id="AvisForm" action="<?=ROOT?>/vehicules/<?=$data['vehicule'][0]->vehicule_id?>" method="POST">
+            <input name="user" value="<?=$_SESSION['id']?>" hidden>
+            <input name="vehicule" value="<?=$data['vehicule'][0]->vehicule_id?>" hidden>
+            
             <div class="form-group mt-3">
               <label for="avis">Avis:</label>
-              <textarea class="form-control" id="avis" rows="3"></textarea>
+              <textarea class="form-control" id="avis" name="avis" rows="3"></textarea>
             </div>
             <div class="form-group mt-3">
               <label for="score">Note (/10):</label>
-              <input type="number" class="form-control" id="score" placeholder="Entrer une note (0-10)">
+              <input name="note" type="number" min=0 max=10 class="form-control" id="score" placeholder="Entrer une note (0-10)">
             </div>
-            <button type="submit" class="btn btn-danger mt-3 float-end btn-lg" style="font-size:24px">Ajouter avis</button>
+            <button id="submitAvis" type="submit" class="btn btn-danger mt-3 float-end btn-lg" style="font-size:24px">Ajouter avis</button>
           </form>
         </div>
       </div>

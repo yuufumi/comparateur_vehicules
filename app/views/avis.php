@@ -20,11 +20,11 @@
 
  <div class="row mx-5">
          <?php
-         for($i=1;$i<=6;$i++) {
+         foreach($data['vehicules'] as $row) {
            echo 
            "<div class='card mx-5 px-2 my-2 col-md-3' style='border-radius:25px;border: 2px solid #3b0000; background-color:transparent; color:#3b0000'>
-               <a href='".ROOT."avis/details/1' style=' text-align:center'><img src='".ROOT."/img/renault.jpg' class='card-img mt-5' style='margin: auto;' alt='...'></a>
-                 <h3 class='card-title py-2' style='text-align:center;'>Véhicule ".$i." </h3>
+               <a href='".ROOT."avis/details/".$row->id."' style=' text-align:center'><img src='".ROOT."img/".$row->lien.".png' class='card-img mt-5' style='margin: auto;' alt='...'></a>
+                 <h3 class='card-title py-2' style='text-align:center;'>".$row->nom."</h3>
              </div>";
          }
          ?>

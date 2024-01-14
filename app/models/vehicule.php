@@ -36,9 +36,14 @@ Class vehicule extends Database{
         return $data;
 
     }
-    public function getAll(){
-        $query = 'SELECT * FROM vehicule LEFT JOIN vehicule_caracteristique ON vehicule.id=vehicule_caracteristique.vehicule_id LEFT JOIN caracteristique ON caracteristique.id=vehicule_caracteristique.feature_id JOIN image ON vehicule.id = image.vehicule_id JOIN marque ON marque.id= vehicule.marque_id JOIN modele ON vehicule.modele_id=modele.id JOIN version ON vehicule.version_id=version.id ';
-        $data = $this->read($query,[]);
+    public function getAll($params){
+        if(!empty($params)){
+            $string = implode(",", $params);
+            $query = 'SELECT '.$string.' FROM vehicule JOIN image ON vehicule.id = image.vehicule_id JOIN marque ON marque.id= vehicule.marque_id JOIN modele ON vehicule.modele_id=modele.id JOIN version ON vehicule.version_id=version.id ';            
+        }else{
+            $query = 'SELECT * FROM vehicule LEFT JOIN vehicule_caracteristique ON vehicule.id=vehicule_caracteristique.vehicule_id LEFT JOIN caracteristique ON caracteristique.id=vehicule_caracteristique.feature_id JOIN image ON vehicule.id = image.vehicule_id JOIN marque ON marque.id= vehicule.marque_id JOIN modele ON vehicule.modele_id=modele.id JOIN version ON vehicule.version_id=version.id ';
+        }
+        $data = $this->read($query);
         return $data;
     }
 
