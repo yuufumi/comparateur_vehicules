@@ -90,7 +90,7 @@ Class user extends Database
 		unset($_SESSION['nom']);
 		unset($_SESSION['prenom']);
 
-		header("Location:". ROOT . "home");
+		header("Location:". ROOT);
 		die;
 	}
 

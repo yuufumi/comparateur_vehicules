@@ -3,7 +3,6 @@ class login extends Controller
 {
 	function index()
 	{	
-		
 		if(!empty($_POST)){
 			if((!empty($_POST['email'])) && (!empty($_POST['password'])))
 			{	

@@ -62,7 +62,6 @@ class Database
 				$check = 1;
 			}
 		}else{
-			show($data);
 			$check = $stm->execute($data);
 		}
 

@@ -11,8 +11,10 @@ class App
         if(file_exists("../app/controllers/".strtolower($url[0]).".php")){
             $this->controller = strtolower($url[0]);
             unset($url[0]);
-        }    
-
+        }else{
+            $this->controller = "erreur";
+        }
+        
         require "../app/controllers/".$this->controller.".php";
         $this->controller = new $this->controller;
         if(isset($url[1])){

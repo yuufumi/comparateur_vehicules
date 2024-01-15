@@ -12,6 +12,6 @@ class profile extends Controller {
         }
         $data['avis'] = $avis->getUserAvis($_SESSION['id']);
 
-        $this->view('profile',$data);
+        $this->view('profileView',$data);
     }
 }

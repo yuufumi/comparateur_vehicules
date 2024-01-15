@@ -37,13 +37,13 @@ class comparateur extends Controller {
             //show($data);
             
             for ($i = 1; $i <= count($data['vehicules']); $i++) {
-                for ($j = $i + 1; $j <= count($data); $j++) {
+                for ($j = $i + 1; $j <= count($data['vehicules']); $j++) {
                     $comparaisons->insert(array('id1'=>$data['vehicules'][$i][1]->vehicule_id,'id2'=>$data['vehicules'][$j][1]->vehicule_id));
                 }
             }
         }else{
         }
-        $this->view('comparateur',$data);
+        $this->view('comparateurView',$data);
     }
 }
 

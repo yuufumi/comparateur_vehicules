@@ -18,12 +18,10 @@
     }elseif(!empty($_POST['version'])){
         $versions = $controller->loadModel('version');
         $ann = $versions->getAnnees($_POST['version']);
-        show($ann);
         echo "<option value=''>Selectionner une annee</option>";
         foreach($ann as $a){
             echo "<option value=".$a->id.">".$a->annee."</option>";
         }
-        print_r($_POST);
     }
     
     ?>
