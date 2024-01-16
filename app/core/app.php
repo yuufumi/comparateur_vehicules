@@ -6,7 +6,6 @@ class App
     private $method = 'index';
     private $params = [];
     public function __construct(){
-
         $url = $this->splitURL();
         if(file_exists("../app/controllers/".strtolower($url[0]).".php")){
             $this->controller = strtolower($url[0]);

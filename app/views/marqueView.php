@@ -6,7 +6,11 @@ class marqueView extends view{
     $this->MarqueDesc($data);
     $this->CarsMarque($this->data);
     $this->topAvis($this->data);
+    if(isset($_SESSION['statut'])){
+      if($_SESSION['statut']==="approved"){
     $this->VotreAvis($this->data,'marques/details/');
+    }
+  }
     $this->footer();
 
   } 

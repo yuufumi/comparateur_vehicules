@@ -18,7 +18,7 @@
       <div class="swiper-wrapper">';
       foreach ($this->data['news'] as $row) {
         echo '<div class="swiper-slide">
-        <a href="'.ROOT.'news/'.$row->news_id.'"><img src="'.ROOT.'/img/'.$row->lien.'" class="d-block w-100" alt="..."></a>
+        <a href="'.ROOT.'news/'.$row->news_id.'"><img src="'.ROOT.'/img/'.$row->lien.'.png" class="d-block w-100" alt="..."></a>
               </div>';
       }
       echo '</div>

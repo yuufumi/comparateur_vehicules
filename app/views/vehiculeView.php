@@ -8,7 +8,11 @@ class vehiculeView extends View{
     $this->carFeatures($this->data);
     $this->comparateur($this->data,$post);
     $this->TopAvis($this->data);
+    if(isset($_SESSION['statut'])){
+    if($_SESSION['statut'] === "approved"){
     $this->VotreAvis($this->data);
+    }
+  }
     $this->footer();
   }
 
@@ -17,12 +21,16 @@ class vehiculeView extends View{
     <section class="d-flex justify-content-center my-3">
     <div class="ms-5" style="text-align:center">
       <img src="'.ROOT.'/img/'.$data['vehicule'][0]->lien.'.png" style="width: 250px;height:250px;" alt="">
-      <h1 style="color:#3b0000">'.$data['vehicule'][0]->vehicule_nom.'</h1>
+      <h1 style="color:#3b0000">'.$data['vehicule'][0]->vehicule_nom.'</h1>';
+      if(isset($_SESSION['id'])){
+        echo'
       <form action="'.ROOT.'vehicules/details/'.$data['vehicule'][0]->vehicule_id.'" method="POST">
       <input type="text" name="user" value="'.$_SESSION['id'].'" hidden>
       <input type="text" name="car" value="'.$data['vehicule'][0]->vehicule_id.'" hidden>
       <button type="submit" class="btn btn-danger btn-block btn-lg">Ajouter au favoris</button>
-      </form>
+      </form>';
+      }
+      echo '
     </div>    
     <table class="table table-striped table-bordered table-center mx-5" style="background-color: #F5F5F5;color:#3B0000;font-size:24px;">
     <tbody>

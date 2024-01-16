@@ -1,7 +1,17 @@
 <?php
 class comment extends Database{
 
-    //public function getAll(){}
+
+    public function updateStatus($post){
+        $query = "UPDATE avis SET statut = :statut WHERE id = :avis";
+        
+        $check = $this->write($query,$post);
+    }
+    public function getAll(){
+        $query = "SELECT avis.id as avis_id, utilisateur_id, user.nom as user_nom,prenom, user.statut as statut_user, vehicule.nom as vehicule_nom, commentaire, note, avis.statut as statut_avis from avis join user on user.id = avis.utilisateur_id join vehicule on vehicule.id = avis.vehicule_id ORDER BY statut_user ASC";
+        $data = $this->read($query);
+        return $data;
+    }
 
     public function getUserAvis($userId){
         $arr['id'] = $userId; 

@@ -14,7 +14,7 @@ class View {
     
     
     protected function navbar(){
-        echo '<nav class="navbar navbar-expand-lg navbar-light px-5">
+        echo '<nav class="navbar sticky-top navbar-expand-lg navbar-light px-5">
         <div class="d-flex align-items-center">  
           <a class="navbar-brand " href="'.ROOT.'">
             <img src="'.ROOT.'img/logo.png" class="d-inline-block align-top" alt="compcar">
@@ -60,7 +60,7 @@ class View {
 
     protected function footer(){
         echo '
-        <nav class="navbar navbar-expand-lg justify-content-start " style="background-color:#1B1717;margin-top:150px">
+        <nav class="navbar sticky-bottom navbar-expand-lg justify-content-start " style="background-color:#1B1717;margin-top:150px">
         <ul class="navbar-nav mx-auto" >
           <li class="nav-item2">
             <a class="nav-link" href="'.ROOT.'" style="color:#F5F5F5;">Accueil</a>
@@ -265,6 +265,38 @@ class View {
         </script>
         </div>
       </section>';
+      }
+
+      protected function hNavbar(){
+        echo '<nav class="navbar-dark bg-dark fixed-left" style="background-color:#1B1717;">
+        <ul class="navbar-nav flex-column my-5">
+        <li class="nav-item2">
+        <form action="'.ADMIN.'logout" method="post">
+        <button type="submit" class="py-3 btn btn-danger btn-lg" style="font-size:32px">Se deconnecter</button>
+        </form>
+        </li>
+        <li class="nav-item2 py-5">
+        <a class="nav-link" href="'.ADMIN.'" >Accueil</a>
+      </li>
+      <li class="nav-item2">
+        <a class="nav-link py-5" href="'.ADMIN.'users" >Utilisateurs</a>
+      </li>
+      <li class="nav-item2">
+        <a class="nav-link py-5" href="'.ADMIN.'news">News</a>
+      </li>
+      <li class="nav-item2">
+        <a class="nav-link py-5" href="'.ADMIN.'avis" >Avis</a>
+      </li>
+      <li class="nav-item2">
+        <a class="nav-link py-5" href="'.ADMIN.'vehicules" >Vehicules</a>
+      </li>
+      <li class="nav-item2">
+        <a class="nav-link " href="'.ADMIN.'settings" >Paramètres</a>
+      </li>
+          </ul>
+
+      </nav>
+        ';
       }
     }
 

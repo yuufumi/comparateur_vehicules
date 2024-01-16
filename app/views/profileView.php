@@ -29,7 +29,7 @@
         <h1 class="mx-5 my-5 justify-content-start" style="color: #3B0000; font-weight: bold">Vos véhicules favoris:</h1>
         <div class="swiper favswiper">
           <div class="swiper-wrapper">';
-          if(!empty($data['avis'])){
+          if(!empty($data['favoris'])){
                 foreach($data['favoris'] as $row) {  
                   echo 
                   "<div class='swiper-slide'>
@@ -43,7 +43,7 @@
                   </div>";
                 }
               }else{
-                echo "<h1>Vous n'avez publié aucune avis</h1>";
+                echo "<h1>Vous n'avez aucune voiture favoris</h1>";
               }
           echo '</div>
           <div class="swiper-button-prev"></div>
@@ -69,6 +69,7 @@
         <h1 class="mb-5" style="font-weight:bold;color:#3b0000">Vos avis publiés</h1>
         <div class="swiper avisswiper swiper-h"> 
         <div class="swiper-wrapper">';
+        if(!empty($data['avis'])){
         count($data['avis'])< 5 ? $cpt = 1 : $cpt = count($data['avis'])/5 +1;
         $remaining = count($data['avis']);
         $ind = 0;
@@ -102,6 +103,9 @@
           }
           echo "</div>";
       }
+    }else{
+      echo "<h1>Vous n'avez publié aucun avis</h1>";
+    }
       echo '</div>
       <div class="swiper-pagination"></div>
       </div>

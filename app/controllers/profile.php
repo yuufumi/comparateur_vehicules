@@ -7,8 +7,10 @@ class profile extends Controller {
         $avis = $this->loadModel('comment');
         $vehicules = $this->loadModel('vehicule');
         $data['favoris'] = array();
+        if(!empty($favoriteCars)){
         foreach($favoriteCars as $row){
             array_push($data["favoris"],$vehicules->getById($row->vehicule_id));
+        }
         }
         $data['avis'] = $avis->getUserAvis($_SESSION['id']);
 

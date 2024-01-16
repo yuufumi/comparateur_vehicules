@@ -13,9 +13,14 @@ body {
     font-weight: bold;
 }
 .nav-item2{
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-top: 100px;
 }
+.nav-item2:hover{
+    background-color: #EEEBDD;
+    color:#3B0000;
+    transition: transform 0.5s ease-in-out;
+}
+
 
 .navbar-nav {
     display: flex;

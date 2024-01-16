@@ -2,6 +2,19 @@
 
 Class user extends Database
 {
+
+	public function update($id,$post){
+		$query = "UPDATE user SET nom = :nom, prenom= :prenom, email= :email, password = :password, date_de_naissance= :date_de_naissance, sexe= :sexe, statut= :statut WHERE id = ".$id.";";
+		$check = $this->write($query,$post);
+		return $check;	
+	} 
+
+	
+    public function updateStatus($post){
+        $query = "UPDATE user SET statut = :statut WHERE id = :user";
+		$_SESSION['statut'] = $post['statut'];
+        $check = $this->write($query,$post);
+    }
 	public function getFavoriteCars($id){
 		$arr['id'] = $id;
 		$query = "select * from favoris where user_id = :id ";
@@ -20,7 +33,7 @@ Class user extends Database
 			$arr['email'] = $POST['email'];
 			$arr['password'] = $POST['password'];
 			
-			$query = "select * from user where email = :email && password = :password limit 1";
+			$query = "select * from user where email = :email && password = :password && statut <> 'pending' limit 1";
 			$data = $this->read($query,$arr);
 			if($data)
 			{	
@@ -28,9 +41,10 @@ Class user extends Database
 				$_SESSION['id'] = $data[0]->id;
 				$_SESSION['nom'] = $data[0]->nom;
 				$_SESSION['prenom'] = $data[0]->prenom;
+				$_SESSION['statut'] = $data[0]->statut;
 				//header("Location:". ROOT . "home");
 			}else{
-				$_SESSION['error'] = "wrong username or password";
+				$_SESSION['error'] = "wrong username or password or not yet approved by admin";
 			}
 		}else{
 
@@ -52,6 +66,7 @@ Class user extends Database
 
 			$query = "insert into user (nom,prenom,email,password,sexe,date_de_naissance) values (:nom,:prenom,:email,:password,:sexe,:date_de_naissance)";
 			$data = $this->write($query,$arr);
+			header('Location: '.ROOT);
 			if($data)
 			{
 				$this->login($arr);
@@ -64,22 +79,15 @@ Class user extends Database
 		}
 	}
 
-	function check_logged_in(){
-		if(isset($_SESSION['email']))
-		{
-
-			$arr['email'] = $_SESSION['email'];
-
-			$query = "select * from users where email = :email && limit 1";
-			$data = $this->read($query,$arr);
-			if(is_array($data))
-			{
-				//logged in
- 				$_SESSION['email'] = $data[0]->email;
-				return true;
-			}
-		}
-		return false;
+	function delete($id){
+		unset($_SESSION['id']);
+		unset($_SESSION['nom']);
+		unset($_SESSION['prenom']);
+		unset($_SESSION['statut']);
+		$arr['id'] = $id;
+		$query = 'delete from user where id = :id';
+		$check = $this->write($query,$arr);
+		return $check;
 
 	}
 
@@ -89,45 +97,36 @@ Class user extends Database
 		unset($_SESSION['id']);
 		unset($_SESSION['nom']);
 		unset($_SESSION['prenom']);
+		unset($_SESSION['statut']);
 
 		header("Location:". ROOT);
 		die;
 	}
 
-	function getAll(){
-		$this->db_connect();
-		$query = "select * from user";
-		$data = $this->read($query);
-		$this->db_disconnect();
+	function getAll($sortedBy = ""){
+		if($sortedBy!==''){
+			$query = "select * from user ORDER BY ".$sortedBy." ASC";
+			$data = $this->read($query);
+		}else{
+			$query = "select * from user";
+			$data = $this->read($query);
+		}
+		
 		return $data;
 	}
 
+	function FilterByStatus($status){
+		$arr['statut'] = $status;
+		$query = "select * from user where statut= :statut";
+		$data = $this->read($query,$arr);
+		return $data;
+	}
 
-
-	function delete($id){
-		$this->db_connect();
-		$query = "delete from user where id =". $id . ";";
-		$stmt = $this->db->prepare($query);
-		$stmt->bindParam(':id', $id, PDO::PARAM_INT);
-		try {
-			// Execute the query within a transaction
-			$this->db->beginTransaction();
-			$stmt->execute();
-			$this->db->commit();
-			$this->db_disconnect();	
-			return true;
-		} catch (PDOException $e) {
-			// Rollback in case of error
-			$this->db->rollBack();
-			error_log($e->getMessage());
-			$this->db_disconnect();
-			return false;
-		}
-	}	
-
-	function update($POST){
-
-
+	function FilterBySexe($sexe){
+		$arr['sexe'] = $sexe;
+		$query = "select * from user where sexe= :sexe";
+		$data = $this->read($query,$arr);
+		return $data;
 	}
 }
 ?>
